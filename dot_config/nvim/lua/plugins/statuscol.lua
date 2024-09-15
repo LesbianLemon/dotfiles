@@ -1,34 +1,41 @@
 return {
-	"luukvbaal/statuscol.nvim",
-	opts = function()
-		local builtin = require("statuscol.builtin")
+	{ "lewis6991/gitsigns.nvim", opts = {} },
+	{
+		"luukvbaal/statuscol.nvim",
+		opts = function()
+			local builtin = require("statuscol.builtin")
 
-		return {
-			setopt = true,
-			relculright = true,
-			ft_ignore = { "neo-tree" },
-			segments = {
-				{
+			return {
+				setopt = true,
+				relculright = true,
+				ft_ignore = { "neo-tree" },
+				segments = {
 					-- Folding
-					text = { builtin.foldfunc },
-					click = "v:lua.ScFa",
-				},
-				{
+					{
+						text = { builtin.foldfunc },
+						click = "v:lua.ScFa",
+					},
 					-- Empty column
-					text = { " " },
-				},
-				{
+					{ sign = { text = { "" }, maxwidth = 1, colwidth = 2, auto = false } },
 					-- Line number
-					text = { builtin.lnumfunc },
-					condition = { true, builtin.not_empty },
-					click = "v:lua.ScLa",
-					min
+					{
+						text = { builtin.lnumfunc },
+						condition = { true, builtin.not_empty },
+						click = "v:lua.ScLa",
+					},
+					-- Git signs
+					{
+						sign = {
+							namespace = { "gitsigns" },
+							name = { ".*" },
+							maxwidth = 1,
+							colwidth = 2,
+							auto = false
+						},
+						click = "v:lua.ScSa",
+					},
 				},
-				{
-					-- Empty column
-					text = { " " },
-				},
-			},
-		}
-	end,
+			}
+		end,
+	},
 }
