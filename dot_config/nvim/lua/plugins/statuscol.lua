@@ -12,15 +12,24 @@ return {
 				segments = {
 					-- Folding
 					{
-						text = { builtin.foldfunc },
+						text = { builtin.foldfunc, " " },
 						click = "v:lua.ScFa",
 					},
-					-- Empty column
-					{ sign = { text = { "" }, maxwidth = 1, colwidth = 2, auto = false } },
+					-- Diagnostic
+					{
+						sign = {
+							namespace = { "diagnostic" },
+							maxwidth = 1,
+							colwidth = 2,
+							auto = true,
+							foldclosed = true,
+						},
+						click = "v:lua.ScSa",
+					},
 					-- Line number
 					{
-						text = { builtin.lnumfunc },
-						condition = { true, builtin.not_empty },
+						text = { " ", builtin.lnumfunc },
+						condition = { true },
 						click = "v:lua.ScLa",
 					},
 					-- Git signs
@@ -30,7 +39,7 @@ return {
 							name = { ".*" },
 							maxwidth = 1,
 							colwidth = 2,
-							auto = false
+							auto = false,
 						},
 						click = "v:lua.ScSa",
 					},

@@ -20,7 +20,7 @@ return {
 						-- end,
 
 						-- NOTE: an ugly fix
-						on_attach = function(client, _)
+						on_attach = function(_, _)
 							for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
 								vim.api.nvim_set_hl(0, group, {})
 							end
@@ -38,6 +38,8 @@ return {
 	{
 		"nvimdev/lspsaga.nvim",
 		event = "LspAttach",
-		opts = {},
+		opts = {
+			lightbulb = { enable = false },
+		},
 	},
 }
