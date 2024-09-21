@@ -1,4 +1,4 @@
-export BROWSER="firefox"
+export BROWSER="firefox-developer-edition"
 export EDITOR="nvim"
 
 export RANGER_LOAD_DEFAULT_RC=false
