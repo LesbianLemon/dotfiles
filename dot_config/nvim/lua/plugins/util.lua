@@ -9,7 +9,6 @@ return {
 	-- Jupyter Notebook
 	{ "rcarriga/nvim-notify", lazy = true },
 	{ "stevearc/dressing.nvim", lazy = true },
-	{ "kiyoon/jupynium.nvim", lazy = true },
 
 	-- COQ utilities
 	"ms-jpq/coq.artifacts",
