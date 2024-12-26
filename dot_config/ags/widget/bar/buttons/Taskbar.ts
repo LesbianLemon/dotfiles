@@ -16,6 +16,8 @@ const DummyItem = (address: string) => Widget.Box({
     visible: false,
 })
 
+const activeWorkspace = Variable(hyprland.active.workspace.id)
+
 const AppItem = (address: string) => {
     const client = hyprland.getClient(address)
     if (!client || client.class === "")
@@ -42,12 +44,8 @@ const AppItem = (address: string) => {
     return Widget.Box(
         {
             attribute: { address },
-            visible: Utils.watch(true, [exclusive, hyprland], () => {
-                return exclusive.value
-                    ? hyprland.active.workspace.id === client.workspace.id
-                    : true
-            }),
-        },
+			visible: activeWorkspace.bind().as(id => exclusive.value ? id === client.workspace.id : true)
+		},
         Widget.Overlay({
             child: btn,
             pass_through: true,
@@ -77,14 +75,18 @@ export default () => Widget.Box({
     setup: w => w
         .hook(hyprland, (w, address?: string) => {
             if (typeof address === "string")
-                w.children = w.children.filter(ch => ch.attribute.address !== address)
+				//w.children = sortItems(hyprland.clients.filter(c => c.workspace.id === hyprland.active.workspace.id).map(c => AppItem(c.address)))
+				w.children = w.children.filter(ch => ch.attribute.address !== address)
         }, "client-removed")
         .hook(hyprland, (w, address?: string) => {
             if (typeof address === "string")
-                w.children = sortItems([...w.children, AppItem(address)])
+				//w.children = sortItems(hyprland.clients.filter(c => c.workspace.id === hyprland.active.workspace.id).map(c => AppItem(c.address)))
+				w.children = sortItems([...w.children, AppItem(address)])
         }, "client-added")
         .hook(hyprland, (w, event?: string) => {
-            if (event === "movewindow")
-                w.children = sortItems(w.children)
+            if (event === "workspace")
+				//w.children = sortItems(hyprland.clients.filter(c => c.workspace.id === hyprland.active.workspace.id).map(c => AppItem(c.address)))
+				w.children = sortItems(w.children)
+				activeWorkspace.setValue(hyprland.active.workspace.id)
         }, "event"),
 })
