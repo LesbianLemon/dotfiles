@@ -36,7 +36,7 @@ const UsageCircular = (usage: Variable, type: Type) => Widget.CircularProgress({
 	startAt: 0.75,
 	child: Widget.Icon({
 		icon: icons.system[type],
-		tooltip_text: `${type.charAt(0).toUpperCase() + type.slice(1)} usage: ${usage.value}`,
+		tooltip_text: `${type.toUpperCase()} usage: ${usage.getValue()}%`,
 	}),
 })
 
