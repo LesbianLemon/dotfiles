@@ -44,7 +44,11 @@ const AppItem = (address: string) => {
     return Widget.Box(
         {
             attribute: { address },
-			visible: activeWorkspace.bind().as(id => exclusive.value ? id === client.workspace.id : true)
+			visible: activeWorkspace.bind().as(id =>
+				exclusive.value
+					? id === hyprland.getClient(address).workspace.id
+					: true
+			),
 		},
         Widget.Overlay({
             child: btn,
