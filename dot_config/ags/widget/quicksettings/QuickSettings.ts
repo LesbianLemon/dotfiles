@@ -56,7 +56,6 @@ const Settings = () => Widget.Box({
 		Row(
 			[Cpu, Ram, Disk],
 		),
-		//Cpu(),
         Row(
             [NetworkToggle, BluetoothToggle],
             [WifiSelection, BluetoothDevices],

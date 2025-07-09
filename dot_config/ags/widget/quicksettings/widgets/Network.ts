@@ -17,14 +17,14 @@ export const NetworkToggle = () => ArrowToggleButton({
 })
 
 export const WifiSelection = () => Menu({
-    name: "network",
-    icon: wifi.bind("icon_name"),
-    title: "Wifi Selection",
-    content: [
-        Widget.Box({
-            vertical: true,
-            setup: self => self.hook(wifi, () => self.children =
-                wifi.access_points
+	name: "network",
+	icon: wifi.bind("icon_name"),
+	title: "Wifi Selection",
+	content: [
+		Widget.Box({
+			vertical: true,
+			setup: self => self.hook(wifi, () => self.children =
+				wifi.access_points
 					.sort(({ strength: a }, { strength: b }) => b - a)
 					.map(ap => Widget.Button({
 						on_clicked: () => {
@@ -47,17 +47,17 @@ export const WifiSelection = () => Menu({
 							],
 						}),
 					})),
-            ),
-        }),
-        Widget.Separator(),
-        Widget.Button({
-            on_clicked: () => sh(options.quicksettings.networkSettings.value),
-            child: Widget.Box({
-                children: [
-                    Widget.Icon(icons.ui.settings),
-                    Widget.Label("Network"),
-                ],
-            }),
-        }),
-    ],
+			),
+		}),
+		Widget.Separator(),
+		Widget.Button({
+			on_clicked: () => sh(options.quicksettings.networkSettings.value),
+			child: Widget.Box({
+				children: [
+					Widget.Icon(icons.ui.settings),
+					Widget.Label("Network"),
+				],
+			}),
+		}),
+	],
 })

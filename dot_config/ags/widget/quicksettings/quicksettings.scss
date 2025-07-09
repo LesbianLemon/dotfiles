@@ -56,6 +56,7 @@ window#quicksettings .quicksettings {
     .menu {
         @include unset;
         @include widget;
+        @include scrollable($top: true);
         padding: $padding;
         margin-top: $spacing;
 
