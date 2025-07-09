@@ -4,4 +4,4 @@ export EDITOR="nvim"
 export RANGER_LOAD_DEFAULT_RC=false
 
 export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+export PATH="$PATH:$BUN_INSTALL/bin"
