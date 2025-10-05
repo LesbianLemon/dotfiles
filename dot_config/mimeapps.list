@@ -1,0 +1,6 @@
+[Added Associations]
+image/png=firefox.desktop;
+
+[Default Applications]
+inode/directory=pcmanfm.desktop
+application/x-gnome-saved-search=pcmanfm.desktop
